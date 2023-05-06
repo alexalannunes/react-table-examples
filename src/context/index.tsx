@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { IRoute } from "../types/routes";
 import { useLocation } from "react-router-dom";
-import { links } from "../constants/routes";
+import { routes } from "../routes/route-setup";
 
 interface ITableListContext extends IRoute {}
 
@@ -25,7 +25,7 @@ export function TableListProvider({ children }: Props) {
   const { pathname } = useLocation();
 
   const [tableRoute, setTableRoute] = useState<IRoute>(() => {
-    return links.find((route) => route.path === pathname) as IRoute;
+    return routes.find((route) => route.path === pathname) as IRoute;
   });
 
   return (

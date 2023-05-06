@@ -1,11 +1,11 @@
 import { Stack } from "@chakra-ui/react";
 import { MenuItem } from "./menu-item";
-import { links } from "../../constants/routes";
+import { routes } from "../../routes/route-setup";
 
 export function MenuList() {
   return (
     <Stack p={4}>
-      {links.map((item) => (
+      {routes.map((item) => (
         <MenuItem key={item.path} item={item} />
       ))}
     </Stack>
