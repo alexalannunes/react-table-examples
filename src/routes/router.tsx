@@ -9,7 +9,7 @@ export function Router() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {routes.map((route) => (
-            <Route path={route.path} element={route.element} />
+            <Route key={route.path} path={route.path} element={route.element} />
           ))}
         </Route>
         <Route path="*" element={<NotFound />} />
