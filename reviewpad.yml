@@ -42,7 +42,7 @@ workflows:
   - name: pull-request-assignment
     description: Assign the author to pull request
     run:
-      - if: $isDraft() == false
+      - if: $assignees() == []
         then: $assignAssignees([$author()])
 
   # This workflow praises contributors on their pull request contributions.
