@@ -43,7 +43,7 @@ workflows:
     description: Assign the author to pull request
     run:
       - if: $isDraft() == false
-        then: $assignAssignees(1, ['alexalannunes'])
+        then: $assignAssignees(['alexalannunes'], 1)
 
   # This workflow praises contributors on their pull request contributions.
   # This helps contributors feel appreciated.
