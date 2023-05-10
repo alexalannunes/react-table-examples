@@ -1,6 +1,7 @@
 import { BasicTable } from "../tables/basic";
 import { ColumnOrderingTable } from "../tables/column-ordering";
 import { ColumnOrderingDnDTable } from "../tables/column-ordering-dnd";
+import { ColumnPinningTable } from "../tables/column-pinning";
 import { IRoute } from "../types/routes";
 
 interface IRouteApp extends IRoute {
@@ -22,6 +23,11 @@ const routes: IRouteApp[] = [
     label: "Column ordering DnD",
     path: "/column-ordering-dnd",
     element: <ColumnOrderingDnDTable />,
+  },
+  {
+    label: "Column pinning",
+    path: "/column-pinning",
+    element: <ColumnPinningTable />,
   },
 ];
 
