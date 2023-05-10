@@ -37,6 +37,14 @@ workflows:
       - if: $isDraft() == false
         then: $assignCodeAuthorReviewers()
 
+  # This workflow assigns the most relevant reviewer to pull requests.
+  # This helps guarantee that most pull requests are reviewed by at least one person.
+  - name: pull-request-assignment
+    description: Assign the author to pull request
+    run:
+      - if: $assignees() == []
+        then: $assignAssignees([$author()])
+
   # This workflow praises contributors on their pull request contributions.
   # This helps contributors feel appreciated.
   - name: praise-contributors-on-milestones
@@ -124,4 +132,3 @@ workflows:
       # Fail Reviewpad check on pull requests that modify any LICENSE;
       - if: $hasFilePattern("**/LICENSE*")
         then: $fail("License files cannot be modified")
-
