@@ -132,6 +132,9 @@ export function BasicTable() {
               );
             },
             header: "First name",
+            meta: {
+              info: "meta",
+            },
           }),
           columnHelper.accessor("user.lastName", {
             cell: (info) => info.getValue(),
@@ -196,12 +199,16 @@ export function BasicTable() {
                   colSpan={header.colSpan}
                   isNumeric={isNumeric(header.column.id)}
                 >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
+                  {header.isPlaceholder ? null : (
+                    <>
+                      {flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
+                      {" - "}
+                      {header.getContext().column.columnDef.meta?.info}
+                    </>
+                  )}
                 </Th>
               ))}
             </Tr>
