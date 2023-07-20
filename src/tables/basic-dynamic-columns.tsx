@@ -1,6 +1,21 @@
-import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 import {
+  Flex,
+  Input,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import {
+  Cell,
   ColumnDef,
+  Row,
+  Table as TableType,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -55,13 +70,76 @@ const peoples = [
   },
 ];
 
+function EditableCell<TData>({
+  value,
+  cell,
+  row,
+  table,
+}: {
+  value: number;
+  cell: Cell<TData, any>;
+  row: Row<TData>;
+  table: TableType<IMoney>;
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newValue, setNewValue] = useState(value);
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    if (table.options?.meta?.setDynamicData) {
+      table.options?.meta?.setDynamicData((prev) => {
+        return prev.map((item, index) => {
+          if (index === row.index) {
+            return {
+              ...prev[index],
+              [cell.column.id]: Number(newValue),
+            };
+          }
+          return item;
+        });
+      });
+    }
+  };
+  if (isEditing) {
+    return (
+      <Input
+        autoFocus
+        size="sm"
+        type="number"
+        step={0.01}
+        w="32"
+        value={newValue}
+        onChange={(ev) => setNewValue(Number(ev.target.value))}
+        min={0}
+        placeholder="R$"
+        onBlur={handleBlur}
+      />
+    );
+  }
+  return (
+    <Flex onClick={() => setIsEditing(true)} gap={2}>
+      <EditIcon color="gray.600" />
+      <Text as="span" color={value < 100 ? "green.500" : "gray.900"}>
+        {currency(value)}
+      </Text>
+    </Flex>
+  );
+}
+
 const otherColumns: ColumnDef<IMoney>[] = peoples.map((item) => ({
   accessorFn: (row) => {
     const value = row[item.name];
     return value;
   },
   id: item.name,
-  cell: (cell) => currency(cell.getValue<number>()),
+  cell: ({ getValue, cell, row, table }) => (
+    <EditableCell
+      value={getValue<number>()}
+      cell={cell}
+      row={row}
+      table={table}
+    />
+  ),
   footer: (props) => {
     const rows = props.table.getCoreRowModel().rows;
     const sum = rows.reduce(
@@ -118,14 +196,14 @@ const defaultColumns: ColumnDef<IMoney>[] = [
 ];
 
 export function BasicDynamicColumnTable() {
-  const [items] = useState(() => data);
+  const [items, setItems] = useState(() => data);
   const [columns] = useState(() => [...defaultColumns]);
   const table = useReactTable<any>({
     data: items,
     columns,
     getCoreRowModel: getCoreRowModel(),
     meta: {
-      canEdit: true,
+      setDynamicData: setItems,
     },
   });
 
