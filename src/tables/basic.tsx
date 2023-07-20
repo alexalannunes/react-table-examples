@@ -182,9 +182,6 @@ export function BasicTable() {
     data: items,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    meta: {
-      canEdit: true,
-    },
   });
 
   return (

@@ -2,3 +2,6 @@ th,
 td {
   border: 1px solid lightgray;
 }
+tr:last-of-type th {
+  border-bottom-width: 1px !important;
+}

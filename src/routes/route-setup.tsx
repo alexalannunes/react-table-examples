@@ -1,4 +1,5 @@
 import { BasicTable } from "../tables/basic";
+import { BasicDynamicColumnTable } from "../tables/basic-dynamic-columns";
 import { ColumnOrderingTable } from "../tables/column-ordering";
 import { ColumnOrderingDnDTable } from "../tables/column-ordering-dnd";
 import { ColumnPinningTable } from "../tables/column-pinning";
@@ -13,6 +14,11 @@ const routes: IRouteApp[] = [
     label: "Basic",
     path: "/",
     element: <BasicTable />,
+  },
+  {
+    label: "Dynamic columns",
+    path: "/dynamic-columns",
+    element: <BasicDynamicColumnTable />,
   },
   {
     label: "Column ordering",
