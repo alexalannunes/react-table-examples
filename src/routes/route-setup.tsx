@@ -4,6 +4,7 @@ import { ColumnOrderingTable } from "../tables/column-ordering";
 import { ColumnOrderingDnDTable } from "../tables/column-ordering-dnd";
 import { ColumnPinningTable } from "../tables/column-pinning";
 import { ColumnSizingTable } from "../tables/column-sizing";
+import { ColumnVisibilityTable } from "../tables/column-visibility";
 import { IRoute } from "../types/routes";
 
 interface IRouteApp extends IRoute {
@@ -40,6 +41,11 @@ const routes: IRouteApp[] = [
     label: "Column sizing",
     path: "/column-sizing",
     element: <ColumnSizingTable />,
+  },
+  {
+    label: "Column visibility",
+    path: "/column-visibility",
+    element: <ColumnVisibilityTable />,
   },
 ];
 

@@ -1,8 +1,6 @@
 import {
-  Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Code,
   Divider,
@@ -18,14 +16,12 @@ import {
 } from "@chakra-ui/react";
 import {
   ColumnDef,
-  ColumnOrderState,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { Person, makeData } from "../data/make-data";
-import { faker } from "@faker-js/faker";
 
 const defaultColumns: ColumnDef<Person>[] = [
   {
@@ -71,10 +67,9 @@ const defaultColumns: ColumnDef<Person>[] = [
   },
 ];
 
-export function ColumnOrderingTable() {
+export function ColumnVisibilityTable() {
   const [data] = useState(() => makeData(20));
   const [columns] = useState(() => [...defaultColumns]);
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>([]);
 
   const [columnVisibility, setColumnVisibility] = useState({});
 
@@ -83,23 +78,13 @@ export function ColumnOrderingTable() {
     columns,
     state: {
       columnVisibility,
-      columnOrder,
     },
     getCoreRowModel: getCoreRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onColumnOrderChange: setColumnOrder,
     debugTable: true,
     debugHeaders: true,
     debugColumns: true,
   });
-
-  const randomizeColumns = () => {
-    table.setColumnOrder(
-      faker.helpers
-        .shuffle(table.getAllLeafColumns())
-        .map((column) => column.id)
-    );
-  };
 
   return (
     <Flex alignItems="flex-start" gap={2}>
@@ -134,13 +119,9 @@ export function ColumnOrderingTable() {
           </Stack>
         </CardBody>
         <Divider color="gray.200" />
-
-        <CardFooter>
-          <Button onClick={randomizeColumns}>Shuffle columns</Button>
-        </CardFooter>
       </Card>
       <Stack>
-        <Code>{JSON.stringify(table.getState().columnOrder)}</Code>
+        <Code>{JSON.stringify(table.getState().columnVisibility)}</Code>
         <Table size={"sm"}>
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
