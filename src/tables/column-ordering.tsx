@@ -140,7 +140,7 @@ export function ColumnOrderingTable() {
         </CardFooter>
       </Card>
       <Stack>
-        <Code>{JSON.stringify(table.getState().columnVisibility)}</Code>
+        <Code>{JSON.stringify(table.getState().columnOrder)}</Code>
         <Table size={"sm"}>
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
