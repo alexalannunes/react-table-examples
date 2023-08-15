@@ -3,6 +3,7 @@ import { BasicDynamicColumnTable } from "../tables/basic-dynamic-columns";
 import { ColumnOrderingTable } from "../tables/column-ordering";
 import { ColumnOrderingDnDTable } from "../tables/column-ordering-dnd";
 import { ColumnPinningTable } from "../tables/column-pinning";
+import { ColumnSizingTable } from "../tables/column-sizing";
 import { IRoute } from "../types/routes";
 
 interface IRouteApp extends IRoute {
@@ -34,6 +35,11 @@ const routes: IRouteApp[] = [
     label: "Column pinning",
     path: "/column-pinning",
     element: <ColumnPinningTable />,
+  },
+  {
+    label: "Column sizing",
+    path: "/column-sizing",
+    element: <ColumnSizingTable />,
   },
 ];
 
