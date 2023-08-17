@@ -1,3 +1,4 @@
+import { IRoute } from "../types/routes";
 import { BasicTable } from "../tables/basic";
 import { BasicDynamicColumnTable } from "../tables/basic-dynamic-columns";
 import { ColumnOrderingTable } from "../tables/column-ordering";
@@ -5,7 +6,7 @@ import { ColumnOrderingDnDTable } from "../tables/column-ordering-dnd";
 import { ColumnPinningTable } from "../tables/column-pinning";
 import { ColumnSizingTable } from "../tables/column-sizing";
 import { ColumnVisibilityTable } from "../tables/column-visibility";
-import { IRoute } from "../types/routes";
+import { EditableDataTable } from "../tables/editable-data";
 
 interface IRouteApp extends IRoute {
   element: JSX.Element;
@@ -46,6 +47,11 @@ const routes: IRouteApp[] = [
     label: "Column visibility",
     path: "/column-visibility",
     element: <ColumnVisibilityTable />,
+  },
+  {
+    label: "Editable data",
+    path: "/editable-data",
+    element: <EditableDataTable />,
   },
 ];
 
