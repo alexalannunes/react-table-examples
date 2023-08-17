@@ -6,5 +6,6 @@ declare module "@tanstack/react-table" {
   }
   interface TableMeta {
     setDynamicData?: React.Dispatch<React.SetStateAction<IMoney[]>>;
+    updateData?: (rowIndex: number, columnId: string, value: unknown) => void;
   }
 }
