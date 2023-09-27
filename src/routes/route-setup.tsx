@@ -7,6 +7,7 @@ import { ColumnPinningTable } from "../tables/column-pinning";
 import { ColumnSizingTable } from "../tables/column-sizing";
 import { ColumnVisibilityTable } from "../tables/column-visibility";
 import { EditableDataTable } from "../tables/editable-data";
+import { ExpandingTable } from "../tables/expanding";
 
 interface IRouteApp extends IRoute {
   element: JSX.Element;
@@ -52,6 +53,11 @@ const routes: IRouteApp[] = [
     label: "Editable data",
     path: "/editable-data",
     element: <EditableDataTable />,
+  },
+  {
+    label: "Expanding",
+    path: "/expanding",
+    element: <ExpandingTable />,
   },
 ];
 
